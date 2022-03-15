@@ -17,7 +17,7 @@ type Server struct {
 	Port int
 }
 
-// Start 启动服务器
+// 启动服务器
 func (s *Server) Start() {
 	fmt.Printf("[Start] Server Listener at IP: %s, Port %d, is starting\n", s.IP, s.Port)
 
@@ -54,6 +54,8 @@ func (s *Server) Start() {
 						fmt.Println("receive buf err", err)
 						continue
 					}
+
+					fmt.Printf("receive client buf %s, cnt %d\n", buf, cnt)
 					// 回显
 					if _, err := conn.Write(buf[:cnt]); err != nil {
 						fmt.Println("write back buf err", err)
@@ -65,12 +67,12 @@ func (s *Server) Start() {
 	}()
 }
 
-// Stop 停止服务器
+// 停止服务器
 func (s *Server) Stop() {
 
 }
 
-// Serve 运行服务器
+// 运行服务器
 func (s *Server) Serve() {
 	s.Start()
 
